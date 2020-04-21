@@ -1,3 +1,5 @@
+#过滤无需上传的文件
+
 .DS_Store
 node_modules/
 dist/
@@ -12,3 +14,4 @@ yarn-error.log*
 *.ntvs*
 *.njsproj
 *.sln
+*.mp4

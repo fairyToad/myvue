@@ -6,6 +6,10 @@ import item from '@/components/item'
 import detail from '@/components/detail'
 import mytest from '@/components/mytest'
 
+
+import gwc from '@/components/gwc'
+
+
 Vue.use(Router)
 
 var routes = [
@@ -33,7 +37,13 @@ var routes = [
           path:'/mytest',
           name:'mytest',
           component:mytest
-        }
+        },
+
+        {
+          path:'/gwc',
+          name:'gwc',
+          component:gwc
+        },
 ]
 
 export default new Router({
