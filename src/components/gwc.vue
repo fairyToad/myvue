@@ -1,47 +1,32 @@
 <template>
     <div id="app">
-        <tr>
-            <th>序号</th>
-            <th>名称</th>
-            <th>价格</th>
-            <th>数量</th>
-            <th>操作</th>
-        </tr>
-        <tr>
-            <td>{{id}}</td>
-            <td>iPhone8</td>
-            <td>5099</td>
-            <td>
-                <button @click="jian()">-</button>
-                    {{num1}}
-                <button @click="add()">+</button>
-            </td>
-            <td><button>移除</button></td>
-        </tr>
+        <table>
+            <tr>
+                <th>序号</th>
+                <th>名称</th>
+                <th>价格</th>
+                <th>数量</th>
+                <th>操作</th>
+            </tr>
+            <tr v-for="(item,index) in alist" :key="index">
+                <td>{{index+1}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.price}}</td>
+                <td>
+                    <button @click="jian(index)">-</button>
+                        <input type="text" v-model="item.num">
+                    <button @click="add(index)">+</button>
+                </td>
+                <td><button @click="pop(index)">移除</button></td>
+            </tr>
+        </table>
 
-        <tr>
-            <td>{{id}}</td>
-            <td>iPhone8</td>
-            <td>5099</td>
-            <td>
-                <button>-</button>
-                    {{num2}}
-                <button>+</button>
-            </td>
-            <td><button>移除</button></td>
-        </tr>
+        <!-- 总计数 -->
+        <div>
+            总数量:{{ count() }}
+            总价格:{{ totalprice() }}
 
-        <tr>
-            <td>{{id}}</td>
-            <td>iPhone8</td>
-            <td>5099</td>
-            <td>
-                <button>-</button>
-                    {{num3}}
-                <button>+</button>
-            </td>
-            <td><button>移除</button></td>
-        </tr>
+        </div>
     </div>
 </template>
 
@@ -49,28 +34,49 @@
 export default {
     data() {
         return {
-            // id的初始值为1,再添加一个不同类别的商品,id++
-            id:1,
-
-            // 最小为1
-            num1:1,
-            num2:1,
-            num3:1,
+            alist:[
+                {name:'iPhone8',price:20,num:1},
+                {name:'iPhone9',price:21,num:2},
+                {name:'iPhoneX',price:22,num:1},
+            ],
         }
     },
     methods: {
-        add(){
-            this.num1++
+        add(index){
+            this.alist[index].num++
         },
-        jian(){
-            if(this.num1<=1){
-                this.num1===1
+        jian(index){
+            if(this.alist[index].num<=1){
+                this.alist[index].num===1
             }else{
-                this.num1--
+                this.alist[index].num--
             }
-            
-            
+        },
+        // 总计数
+        count(){
+            // 初始化总数量
+            let total=0;
+            // 遍历列表的num,当i小于l的时候,累加给total
+            for(let i=0,l=this.alist.length;i<l;i++){
+                total += this.alist[i].num;
+            }
+            return total;
+        },
+
+        // 总价格
+        totalprice(){
+            let tp=0;
+            for(let i=0,l=this.alist.length;i<l;i++){
+                tp+=this.alist[i].num*this.alist[i].price
+            }
+            return tp
+        },
+
+        // 删除
+        pop(index){
+            this.alist.pop(index)
         }
+
     },
 
 }
