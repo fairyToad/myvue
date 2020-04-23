@@ -8,6 +8,8 @@ import mytest from '@/components/mytest'
 
 
 import gwc from '@/components/gwc'
+import test from '@/components/test'
+import register from '@/components/register'
 
 
 Vue.use(Router)
@@ -44,8 +46,19 @@ var routes = [
           name:'gwc',
           component:gwc
         },
+        {
+          path:'/test',
+          name:'test',
+          component:test
+        },
+        {
+          path:'/register',
+          name:'register',
+          component:register
+        },
 ]
 
+// 路由模式
 export default new Router({
   routes:routes,
   mode:'history'   /*hash*/

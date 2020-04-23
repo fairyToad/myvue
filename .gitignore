@@ -1,4 +1,4 @@
-#过滤无需上传的文件
+# 过滤无需上传的文件
 
 .DS_Store
 node_modules/

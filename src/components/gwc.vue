@@ -65,8 +65,10 @@ export default {
 
         // 总价格
         totalprice(){
+            // 初始化总价格
             let tp=0;
-            for(let i=0,l=this.alist.length;i<l;i++){
+            // 遍历列表的num,当i小于L的时候,累加给tp
+            for(let i=0,L=this.alist.length;i<L;i++){
                 tp+=this.alist[i].num*this.alist[i].price
             }
             return tp
@@ -76,7 +78,6 @@ export default {
         pop(index){
             this.alist.pop(index)
         }
-
     },
 
 }
