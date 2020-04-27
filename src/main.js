@@ -21,7 +21,7 @@ import Axios from 'axios'
 Vue.prototype.axios = Axios;
 
 // 携带cookie请求,
-//Axios.defaults.withCredentials = true;
+// Axios.defaults.withCredentials = true;
 
 
 // 方便反序列化操作,无需解析多个表单 

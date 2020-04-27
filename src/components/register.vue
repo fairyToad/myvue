@@ -29,7 +29,7 @@
                                 密    码:
                             </td>
                             <td>
-                                <input type="text" v-model="password">
+                                <input type="password" v-model="password">
                             </td>
                         </tr>
 
@@ -38,7 +38,7 @@
                                 确认密码:
                             </td>
                             <td>
-                                <input type="text" v-model="password2">
+                                <input type="password" v-model="password2">
                             </td>
                         </tr>
 
@@ -128,8 +128,7 @@ export default {
                     password:this.password,
                     phone:this.phone,
                 }}
-            ).then(
-                res=>{
+            ).then(res=>{
                     console.log(res)
                     if (res.data.code==200) {
                         this.$Message(res.data.message);

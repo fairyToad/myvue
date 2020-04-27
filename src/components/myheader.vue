@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <section class="header text-center">
+	<div>
+		<section class="header text-center">
 		<nav class="navbar navbar-expand-lg navbar-light navbar-custom">
 			<div class="container"><a class="navbar-brand" href="index.html"><i class="fas fa-shopping-bag primary-color mr-1"></i>美多商城</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-1" aria-controls="navbar-1" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -81,7 +81,6 @@
 								<a class="dropdown-item" href="cart.html">Cart</a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="contact.html">Contact</a>
-
 							</div>
 						</li>
 						<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
@@ -119,29 +118,58 @@
 											<span class="emphasis">$49.00</span></div>
 									</li>
 								</ul>
-								
 								<a href="cart.html" class="btn btn-lg btn-full-width btn-primary" style="margin: 0;">View Cart</a></div>
 						</li>
 					</ul>
 				</div>
 			</div>
+			<div v-if="username==''">
+				<router-link to='/login' >登 录</router-link>
+				/
+				<router-link to='/register' >注 册</router-link>
+			</div>
+			<div v-else>
+				欢迎您:{{ username }}
+				&nbsp;&nbsp;
+				<Button color="black">登 出</Button>
+			</div>
 		</nav>
 	</section>
-    </div>
+	</div>
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            
-        }
-    },
+export default{
+	//定义数据
+	data(){
+		return {
+			msg:'<h1>这是一个变量</h1>',
+			//用户名
+			username:''
+		}
+	},
+	//钩子方法  
+	mounted:function(){
+		//判断是否登录
+		var uname = localStorage.getItem("username");
+		if(uname==null){
+			//没登录
+			this.username = '';
+		}else{
+			//登录
+			this.username = uname;
+		}
+	},
 
-
+	//自定义方法
+	methods:{
+	}
 }
+
 </script>
 
+
 <style>
+
 
 </style>
