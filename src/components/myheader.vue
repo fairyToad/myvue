@@ -1,4 +1,4 @@
-<template>
+ <template>
 	<div>
 		<section class="header text-center">
 		<nav class="navbar navbar-expand-lg navbar-light navbar-custom">
@@ -129,9 +129,9 @@
 				<router-link to='/register' >注 册</router-link>
 			</div>
 			<div v-else>
-				欢迎您:{{ username }}
+				欢迎您:<a href="/myprofile">{{ username }}</a>
 				&nbsp;&nbsp;
-				<Button color="black">登 出</Button>
+				<Button color="black" @click="logout">登 出</Button>
 			</div>
 		</nav>
 	</section>
@@ -150,6 +150,17 @@ export default{
 	},
 	//钩子方法  
 	mounted:function(){
+
+		//接收三方参数
+		var sina_id = this.$route.query.sina_id;
+		var user_id = this.$route.query.uid;
+
+		if(sina_id){
+			//自动帮用户进行登录操作
+			localStorage.setItem("username",sina_id);
+			localStorage.setItem("uid",user_id);
+		}
+
 		//判断是否登录
 		var uname = localStorage.getItem("username");
 		if(uname==null){
@@ -163,6 +174,14 @@ export default{
 
 	//自定义方法
 	methods:{
+		//登出操作
+			logout:function(){
+				//删除localstorage
+				localStorage.removeItem("username");
+				//跳转
+				this.username = '';
+				this.$router.push("/");
+			}
 	}
 }
 

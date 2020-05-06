@@ -63,6 +63,10 @@
                             <td></td>
                             <td>
                                 <Button color="blue" @click="submit">登录</Button>
+
+                                &nbsp;&nbsp;
+
+                                <img class="imgcode" src="http://127.0.0.1:8000/static/sina.png" alt="使用微博账号登录本站" @click="sina">
                             </td>
                         </tr>
 
@@ -123,6 +127,16 @@ export default {
 
     },
     methods:{
+        // 微博三方登录
+        sina(){
+            // 拼接url
+            let client_id=670240910;
+            let url='https://api.weibo.com/oauth2/authorize?client_id='+client_id
+                +'&redirect_uri=http://127.0.0.1:8000/md_admin/weibo';
+            // 跳转
+            window.location.href=url;
+        },
+
         //刷新验证码
         changecode:function(){
             //生成随机数
@@ -155,6 +169,7 @@ export default {
                         console.log(res)
                         // 先判定验证码是否成功
                         if(res.data.code==200){
+                            // 在web站点存储用户名和id,以便验证和编辑操作
                             localStorage.setItem('username',res.data.username)
                             localStorage.setItem('uid',res.data.uid)
                             this.$Message(res.data.message)

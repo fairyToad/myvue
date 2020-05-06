@@ -132,6 +132,7 @@ export default {
                     console.log(res)
                     if (res.data.code==200) {
                         this.$Message(res.data.message);
+                        this.$router.push("/login");
                     }
                 }
             )
