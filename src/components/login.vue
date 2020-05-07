@@ -172,6 +172,7 @@ export default {
                             // 在web站点存储用户名和id,以便验证和编辑操作
                             localStorage.setItem('username',res.data.username)
                             localStorage.setItem('uid',res.data.uid)
+                            localStorage.setItem('jwt',res.data.jwt)
                             this.$Message(res.data.message)
                             //跳转首页
                             this.$router.push('/') 

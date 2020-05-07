@@ -7,8 +7,11 @@
 				<Breadcrumb :datas="datas"></Breadcrumb>
 			</div>
 			<div>			
-					<img :src="src" />
+					<!-- <img :src="src" /> -->
 					<Avatar :src="src" :width="150" fit="fill"></Avatar>
+			</div>
+			<div>
+				绑定手机号:{{phone}}
 			</div>
 			<div>			
 				<table>
@@ -26,6 +29,13 @@
 						</td>
 						<td>
 							<input type="file" @change="upload_qiniu">
+							{{load_percent}}
+							<br>
+							<!-- 进度条三方标签 发送请求如发邮件,视频,文件都可以使用-->
+							<Progress color='green' :percent='load_int' v-show="load_int">
+								<span slot="text">{{ load_int }}%</span>
+							</Progress>
+
 						</td>
 					</tr>
 					<tr>					
@@ -71,7 +81,13 @@ import {config,formatXml} from '../config.js';
 export default {
   data () {
     return {
-      msg: "这是一个变量",
+	  msg: "这是一个变量",
+	  //手机号变量
+	  phone:'',
+	  //整形进度
+	  load_int:0,
+	  //上传进度展示变量:
+	  load_percent:'',
       //七牛云token
       token:'',
       //验证码图片地址
@@ -90,15 +106,41 @@ export default {
   },
   mounted:function(){
 
-   //获取最新的token
-   this.get_token();
+    //获取最新的token
+    this.get_token();
+    //注册拖拽容器
+    let upload = document.querySelector("#upload");
+    //声明监听事件
+    upload.addEventListener('dragenter',this.onDrag,false);
+    upload.addEventListener('dragover',this.onDrag,false);
+    upload.addEventListener('drop',this.onDrop,false);	
 
-   //注册拖拽容器
-   let upload = document.querySelector("#upload");
-   //声明监听事件
-   upload.addEventListener('dragenter',this.onDrag,false);
-   upload.addEventListener('dragover',this.onDrag,false);
-   upload.addEventListener('drop',this.onDrop,false);
+	// 进入用户中心,展示自己的头像
+	this.axios({
+		method:'get',
+		url:"http://localhost:8000/userinfo/",
+		params:{
+			uid:localStorage.getItem('uid'),
+			jwt:localStorage.getItem('jwt'),
+		}
+	}).then(res=>{
+		if(res.data.code==200){
+			console.log(res);
+			this.src='http://localhost:8000/static/upload/'+res.data.img;
+			this.phone=res.data.phone
+		}else{	
+			alert(res.data.message)
+			this.$router.push('/login');
+			localStorage.removeItem('uid');
+			localStorage.removeItem('username');
+			localStorage.removeItem('jwt');
+			
+		}
+		
+	})
+		  
+
+
 
   
 },
@@ -182,8 +224,21 @@ export default {
   			method:'POST',
   			url:'http://up-z1.qiniup.com/',
   			data:param,
-  			timeout:30000
+  			timeout:30000,
+			//上传过程中的方法
+			onUploadProgress:(e) =>{
+				//计算上传百分比
+				var complete = (e.loaded/e.total);
+				if (complete < 1) {
+					this.load_percent=(complete*100).toFixed(2)+"%";
+					this.load_int=parseInt((complete*100).toFixed(2));	
+				}
+			}
   		}).then(result =>{
+
+			//手动赋值100%(由于网络波动,e.loaded的值并不准确,需要人为的在上传完成后将其复制为100%)
+			this.load_percent='100%';
+			this.load_int=100;
 
   			console.log(result);
   			this.src = "http://q9kst4fjn.bkt.clouddn.com/"+result.data.key;

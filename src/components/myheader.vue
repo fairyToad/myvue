@@ -178,6 +178,8 @@ export default{
 			logout:function(){
 				//删除localstorage
 				localStorage.removeItem("username");
+				localStorage.removeItem('uid');
+				localStorage.removeItem('jwt');
 				//跳转
 				this.username = '';
 				this.$router.push("/");
