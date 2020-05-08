@@ -133,6 +133,11 @@
 				&nbsp;&nbsp;
 				<Button color="black" @click="logout">登 出</Button>
 			</div>
+
+			<div>
+				<!-- 开关 -->
+				<h-switch v-model="lang" @change="lang_change">中/英</h-switch>
+			</div>
 		</nav>
 	</section>
 	</div>
@@ -145,18 +150,43 @@ export default{
 		return {
 			msg:'<h1>这是一个变量</h1>',
 			//用户名
-			username:''
+			username:'',
+			//开关变量
+			lang:1
 		}
 	},
 	//钩子方法  
 	mounted:function(){
+
+		// 页面加载之前读取浏览器的语言,帮用户选择语言
 		if (navigator.language=='zh-CN') {
 			this.$i18n.locale='zh'
 		}else{
 			this.$i18n.locale='en'
 		}
-		
 
+		// 客制化
+		// 语言及切换按钮全局状态保持
+		// 读取localStorage的信息,并赋值给变量lang_local
+		var lang_local=localStorage.getItem('lang');
+		// 如果lang_local有值,说明用户切换过语言按钮
+		if (lang_local) {
+			// 那么我们就让语言渲染为存储的语言
+			this.$i18n.locale=lang_local;
+			// 将lang赋值为对应的值(按钮的状态也应该跟随保持)
+			if(lang_local == 'zh'){
+				this.lang = 1;
+			}else{
+				this.lang = 0;
+			}
+		// 否则就说明用户没有自定义语言,
+		} else {
+			// 我们将其渲染为默认语言
+			this.$i18n.locale='zh';
+			// 将lang赋值为对应的值
+			this.lang=1;
+		}
+		
 
 		//接收三方参数
 		var sina_id = this.$route.query.sina_id;
@@ -181,6 +211,19 @@ export default{
 
 	//自定义方法
 	methods:{
+
+		// 点击按钮切换语言,并且存储在前端,用作状态保持的依据
+		lang_change:function(){
+			console.log(this.lang);
+			if (this.lang==1) {
+				this.$i18n.locale='zh';
+				localStorage.setItem('lang','zh')
+			}else{
+				this.$i18n.locale='en';
+				localStorage.setItem('lang','en')
+			}
+		},
+
 		//登出操作
 			logout:function(){
 				//删除localstorage
