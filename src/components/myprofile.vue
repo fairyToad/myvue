@@ -35,7 +35,6 @@
 							<Progress color='green' :percent='load_int' v-show="load_int">
 								<span slot="text">{{ load_int }}%</span>
 							</Progress>
-
 						</td>
 					</tr>
 					<tr>					
@@ -70,7 +69,7 @@
 
 
  
-<script>
+  <script>
 
 //导入组件
 import myheader from './myheader.vue'
@@ -79,32 +78,30 @@ import myheader from './myheader.vue'
 import {config,formatXml} from '../config.js';
 
 export default {
-  data () {
-    return {
-	  msg: "这是一个变量",
-	  //手机号变量
-	  phone:'',
-	  //整形进度
-	  load_int:0,
-	  //上传进度展示变量:
-	  load_percent:'',
-      //七牛云token
-      token:'',
-      //验证码图片地址
-      src:'',
-      //视频播放地址
-      videosrc:'',
-      //面包屑导航变量
-      datas:[{title:'首页',route:{name:'index'}},{title:'用户中心->我的首页'}]
-    }
-  },
-  //注册组件标签
-  components:{
-
-  	'myheader':myheader
-
-  },
-  mounted:function(){
+    data () {
+		return {
+			msg: "这是一个变量",
+			//手机号变量
+			phone:'',
+			//整形进度
+			load_int:0,
+			//上传进度展示变量:
+			load_percent:'',
+			//七牛云token
+			token:'',
+			//验证码图片地址
+			src:'',
+			//视频播放地址
+			videosrc:'',
+			//面包屑导航变量
+			datas:[{title:'首页',route:{name:'index'}},{title:'用户中心->我的首页'}]
+		}
+    },  
+    //注册组件标签
+    components:{
+		'myheader':myheader
+    },
+    mounted:function(){
 
     //获取最新的token
     this.get_token();
@@ -133,12 +130,10 @@ export default {
 			this.$router.push('/login');
 			localStorage.removeItem('uid');
 			localStorage.removeItem('username');
-			localStorage.removeItem('jwt');
-			
+			localStorage.removeItem('jwt');	
 		}
-		
 	})
-		  
+	
 
 
 

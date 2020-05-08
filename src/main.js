@@ -7,6 +7,21 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
+// 国际化语言支持模组
+import VueI18n from "vue-i18n"
+Vue.use(VueI18n)
+// 导入语言包
+const i18n = new VueI18n({
+  // 当前默认语言
+  locale:'zh',
+  // 语言包声明
+  messages:{
+    'zh':require('./lang/zh'),
+    'en':require('./lang/en')
+  }
+})
+
+
 
 Vue.config.productionTip = false
 
@@ -36,6 +51,7 @@ Vue.use(HeyUI);
 new Vue({
   el: '#app',
   router,
+  i18n,
   components: { App },
   template: '<App/>',
   render: h => h(App)
