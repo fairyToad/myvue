@@ -227,26 +227,31 @@ input {
 .navbar-custom {
   background: transparent; }
 
-a.navbar-brand, a.logo {
-  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #444342 !important;
-  font-size: 2rem;
-  font-weight: bold;
-  margin-top: 0; }
-
-a.logo:hover, a.logo:active, a.logo:focus {
-  text-decoration: none; }
-
-li.nav-item .btn {
-  margin-top: .2rem;
-  margin-left: .4rem; }
-li.nav-item .btn-white {
-  color: #444342; }
-li.nav-item .active {
-  font-weight: bold; }
+  :root{
+    --bg-color:#fff;
+    --a-color:black;
+  }
+  
+  a.navbar-brand, a.logo {
+    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color:var(--a-color);
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 0; }
+  
+  a.logo:hover, a.logo:active, a.logo:focus {
+    text-decoration: none; }
+  
+  li.nav-item .btn {
+    margin-top: .2rem;
+    margin-left: .4rem; }
+  li.nav-item .btn-white {
+    color: #444342; }
+  li.nav-item .active {
+    font-weight: bold; }
 
 .header {
-  background: #fff;
+  background:var(--bg-color);
   min-height: 7em;
   height: auto;
   border-radius: 0;

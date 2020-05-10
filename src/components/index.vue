@@ -4,21 +4,12 @@
     <div>
 		<myheader></myheader>
 		<div id="carousel" class="carousel slide" data-ride="carousel">
-				<ul class="carousel-indicators">
-				<li data-target="#carousel" data-slide-to="0" class="active"></li>
-				<li data-target="#carousel" data-slide-to="1"></li>
-				<li data-target="#carousel" data-slide-to="2"></li>
-			</ul>	
+				
 			<div class="carousel-inner">
 				<!--Text only with background image-->
 				<div class="carousel-item active">
-					<div class="container slide-textonly">
-						<div>
-							<h1>York &amp; Smith</h1>
-							<p class="lead">Spring/Summer 2018 Collection</p>
-							<a href="#" class="btn btn-outline-secondary">View Collection</a>
-						</div>
-					</div>
+					<!--轮播图-->
+					<Carousel @change="changeimg" @click="clickimg" pageTheme="circle" :datas="imgs"></Carousel>
 				</div>			
 			</div>
 		</div>
@@ -147,12 +138,25 @@
 
 <script>
 //导入组件
-import myheader from './myheader.vue'
+import myheader from './myheader.vue'  
 
 export default {
     data () {
 		return {
 			msg: "这是一个变量",
+			//轮播图图片
+			imgs:[
+			{
+				title:'广告活动页',
+				link:'http://www.baidu.com',
+				image:'http://localhost:8080/static/img/placeholder-jacket.f5996c6.png'
+			},
+			// {
+			// 	title:'促销活动页',
+			// 	link:'http://www.163.com',
+			// 	image:'http://localhost:8080/static/img/placeholder-product.1011f1b.jpg'
+			// }
+			]
 		}
 },
 	//注册组件标签
@@ -161,9 +165,45 @@ export default {
 	},
 
     mounted:function(){
+		this.change_back();
+		this.get_carousel();
     },
 
 	methods:{
+		//切换主题颜色
+		change_back:function(){
+			//获取样式表
+			var styles = getComputedStyle(document.documentElement);
+			//动态更改
+			document.documentElement.style.setProperty("--bg-color","#292a2d");
+			//字体颜色
+			document.documentElement.style.setProperty("--a-color","white");
+		},
+
+		//获取轮播图接口
+		get_carousel:function(){
+			//发送请求
+			this.axios.get('http://localhost:8000/getcarousel/').then((result) =>{
+				console.log(result);
+				var mylist = [];
+				//遍历数组
+				for(let i=0,l=result.data.length;i<l;i++){
+						mylist.push({title:result.data[i].name,link:result.data[i].src,image:result.data[i].img});
+				}
+				this.img = mylist;
+			});
+		},
+
+		//点击轮播图
+		clickimg:function(index,data){
+			//alert(data.link);
+			//跳转
+			window.location.href = data.link;
+		},
+		//切换轮播图
+		changeimg:function(index,data){
+			//console.log(data);
+		}
     }
 }
 
