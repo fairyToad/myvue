@@ -3,7 +3,7 @@
 	<myheader></myheader>
 		<section class="featured-block text-center">
 		<div class="container">
-				<div>
+			<div>
 				<Breadcrumb :datas="datas"></Breadcrumb>
 			</div>
 			<div>			
@@ -68,8 +68,8 @@
 </template>
 
 
- 
-  <script>
+
+<script>
 
 //导入组件
 import myheader from './myheader.vue'
