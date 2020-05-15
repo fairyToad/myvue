@@ -84,7 +84,12 @@
 							</div>
 						</li>
 						<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-					<li class="nav-item dropdown"><input type="text" /></li>
+
+					<!-- 搜索框 -->
+					<li class="nav-item dropdown">
+						<Search @search='search' v-model="text"></Search>
+					</li>
+
 						<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-shopping-cart"></i> <span class="badge badge-pill badge-primary">3</span></a>
 							<div class="dropdown-menu dropdown-menu-right dropdown-cart" aria-labelledby="navbarDropdown">
 								<h6>3 Items <span class="emphasis">$147.00</span></h6>
@@ -149,12 +154,21 @@ export default{
 	data(){
 		return {
 			msg:'<h1>这是一个变量</h1>',
+			// 模糊搜索关键词变量
+			text:'',
 			//用户名
 			username:'',
 			//开关变量
 			lang:1
 		}
 	},
+	// 监听属性(监听页面变化,解决search页面参数无法传递的问题)
+	watch: {
+		$route(to,from){
+			this.$router.go(0);
+		}
+	},
+
 	//钩子方法  
 	mounted:function(){
 
@@ -207,10 +221,17 @@ export default{
 			//登录
 			this.username = uname;
 		}
-	},
+	}, 
 
 	//自定义方法
 	methods:{
+		// 模糊搜索
+		search:function(){
+			// 携带关键词跳转到检索页
+			this.$router.push({path:'/search',query:{text:this.text}})
+
+		},
+
 
 		// 点击按钮切换语言,并且存储在前端,用作状态保持的依据
 		lang_change:function(){

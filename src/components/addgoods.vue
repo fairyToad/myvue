@@ -101,18 +101,20 @@ export default {
             color:'',
             size:'',
             season:'',
+            // 存放分类对应的id
+            goods_dict:{},
             //面包屑导航变量
             datas:[{title:'首页',route:{name:'index'}},{title:'添加商品'}]
         }
     },
-  //注册组件标签
+    //注册组件标签
     components:{
         'myheader':myheader
-},
+    },
     mounted:function(){
         // 调用获取分类方法
         this.get_cate()
-},
+    },
     methods:{
         //添加商品逻辑
         submit:function(){
@@ -126,7 +128,7 @@ export default {
             param = JSON.stringify(param);
             console.log(param);
             //发送请求
-            this.axios.get('http://localhost:8000/addgoods/',{params:{name:this.name,price:this.price,params:param}}).then((result) =>{
+            this.axios.get('http://localhost:8000/addgoods/',{params:{name:this.name,price:this.price,params:param,cid:this.goods_dict[this.selected]}}).then((result) =>{
                 console.log(result);
                 this.$Message(result.data.message);
             });
@@ -139,6 +141,7 @@ export default {
                 var cate=[];
                 for(let i=0;i<res.data.length;i++){
                     cate.push(res.data[i]['name']);
+                    this.goods_dict[res.data[i]['name']]=res.data[i]['id']
                 }
                 this.category=cate
             })

@@ -1,141 +1,14 @@
 <template>
   <div>
 
-	<section class="header text-center">
-		<nav class="navbar navbar-expand-lg navbar-light navbar-custom">
-			<div class="container"><a class="navbar-brand" href="index.html"><i class="fas fa-shopping-bag primary-color mr-1"></i>美多商城</a>
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-1" aria-controls="navbar-1" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-				<div class="collapse navbar-collapse pull-xs-right justify-content-end" id="navbar-1">
-					<ul class="navbar-nav mt-2 mt-md-0">
-						<li class="nav-item active"><a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a></li>
-						<li class="nav-item dropdown mega-menu"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop </a>
-							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<div class="container">
-									<div class="divider"></div>
-									<div class="row">
-										<div class="col-md-2">
-											<h6 class="text-uppercase">Women's</h6>
-											<ul class="nav flex-column">
-												<li class="nav-item"><a class="nav-link active" href="#">Active</a></li>
-												<li class="nav-item"><a class="nav-link" href="#">Link item</a></li>
-												<li class="nav-item"><a class="nav-link" href="#">Link item</a></li>
-												<li class="nav-item"><a class="nav-link" href="#">Link item</a></li>
-												<li class="nav-item"><a class="nav-link" href="#">Link item</a></li>
-											</ul>
-										</div>
-										<div class="col-md-2">
-											<h6 class="text-uppercase">Men's</h6>
-											<ul class="nav flex-column">
-												<li class="nav-item"><a class="nav-link" href="#">Link item</a></li>
-												<li class="nav-item"><a class="nav-link" href="#">Link item</a></li>
-												<li class="nav-item"><a class="nav-link" href="#">Link item</a></li>
-												<li class="nav-item"><a class="nav-link" href="#">Link item</a></li>
-												<li class="nav-item"><a class="nav-link" href="#">Link item</a></li>
-											</ul>
-										</div>
-										<div class="col-md-2">
-											<h6 class="text-uppercase">Girl's</h6>
-											<ul class="nav flex-column">
-												<li class="nav-item"><a class="nav-link" href="#">Link item</a></li>
-												<li class="nav-item"><a class="nav-link" href="#">Link item</a></li>
-												<li class="nav-item"><a class="nav-link" href="#">Link item</a></li>
-												<li class="nav-item"><a class="nav-link" href="#">Link item</a></li>
-												<li class="nav-item"><a class="nav-link" href="#">Link item</a></li>
-											</ul>
-										</div>
-										<div class="col-md-2">
-											<h6 class="text-uppercase">Boy's</h6>
-											<ul class="nav flex-column">
-												<li class="nav-item"><a class="nav-link" href="#">Link item</a></li>
-												<li class="nav-item"><a class="nav-link" href="#">Link item</a></li>
-												<li class="nav-item"><a class="nav-link" href="#">Link item</a></li>
-												<li class="nav-item"><a class="nav-link" href="#">Link item</a></li>
-												<li class="nav-item"><a class="nav-link" href="#">Link item</a></li>
-											</ul>
-										</div>
-										<div class="col-md-4">
-											<h6 class="text-uppercase">Featured Items</h6>
-											<div class="row">
-												<div class="col-6 text-center"><a href="item.html">
-													<img src="../assets/images/placeholder-product.jpg" alt="" class="img-fluid mt-2 mb-3"></a>
-													<h6 class="mb-0"><a href="item.html">Product Name</a></h6>
-													<p><span class="emphasis">$49.00</span></p>
-													<a href="#" class="btn btn-sm btn-outline-secondary mt-0">Buy Now</a>
-										</div>
-												<div class="col-6 text-center"><a href="item.html">
-													<img src="../assets/images/placeholder-product.jpg" alt="" class="img-fluid mt-2 mb-3"></a>
-													<h6 class="mb-0"><a href="item.html">Product Name</a></h6>
-													<p><span class="emphasis">$49.00</span></p>
-													<a href="#" class="btn btn-sm btn-outline-secondary mt-0">Buy Now</a>
-										</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages </a>
-							<div class="dropdown-menu" aria-labelledby="navbarDropdown"><a class="dropdown-item" href="index.html">Homepage</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="catalog.html">Catalog</a>
-								<a class="dropdown-item" href="item.html">Item Detail</a>
-								<a class="dropdown-item" href="cart.html">Cart</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="contact.html">Contact</a>
-
-							</div>
-						</li>
-						<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-					<li class="nav-item dropdown"><input type="text" /></li>
-						<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-shopping-cart"></i> <span class="badge badge-pill badge-primary">3</span></a>
-							<div class="dropdown-menu dropdown-menu-right dropdown-cart" aria-labelledby="navbarDropdown">
-								<h6>3 Items <span class="emphasis">$147.00</span></h6>
-								<div class="dropdown-divider"></div>
-								<ul class="shopping-cart-items">
-									<li class="row">
-										<div class="col-3">
-											<img src="../assets/images/placeholder-product.jpg" width="60">
-										</div>
-										<div class="col-9">
-											<h6><a href="item.html">Product Name</a></h6>
-											<span class="text-muted">1x</span>
-											<span class="emphasis">$49.00</span></div>
-									</li>
-									<li class="row">
-										<div class="col-3">
-											<img src="../assets/images/placeholder-product.jpg" width="60">
-										</div>
-										<div class="col-9">
-											<h6><a href="item.html">Product Name</a></h6>
-											<span class="text-muted">1x</span>
-											<span class="emphasis">$49.00</span></div>
-									</li>
-									<li class="row">
-										<div class="col-3">
-											<img src="../assets/images/placeholder-product.jpg" width="60">
-										</div>
-										<div class="col-9">
-											<h6><a href="item.html">Product Name</a></h6>
-											<span class="text-muted">1x</span>
-											<span class="emphasis">$49.00</span></div>
-									</li>
-								</ul>
-								
-								<a href="cart.html" class="btn btn-lg btn-full-width btn-primary" style="margin: 0;">View Cart</a></div>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</nav>
-	</section>
-	
+	<myheader></myheader>
 
 	<section class="featured-block text-center">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 text-center">
 					<div class="product-image mt-3">
-						<img class="img-fluid" src="../assets/images/placeholder-product.jpg">
+						<img class="img-fluid" :src="'http://localhost:8000/static/upload/'+info.img">
 					</div>
 					<div class="product-thumbnails"><a href="#">
 						<img class="mt-2 mr-2 img-fluid" src="../assets/images/placeholder-product.jpg" ></a>
@@ -149,8 +22,14 @@
 						<img class="mt-2 mr-2 img-fluid" src="../assets/images/placeholder-product.jpg" ></a></div>
 				</div>
 				<div class="col-md-6 mt-5 mt-md-2 text-center text-md-left">
-					<h2 class="mb-3 mt-0">Product Name</h2>
-					<p class="lead mt-2 mb-3 primary-color">$49.00</p>
+					<h2 class="mb-3 mt-0">{{info.name}}</h2>
+					<p class="lead mt-2 mb-3 primary-color">${{info.price}}</p>
+					<!-- 涉及到类型转换,将字符串转回json -->
+					颜色:{{JSON.parse(info.params).color}}<br>
+					尺码:{{JSON.parse(info.params).size}}<br>
+					季节:{{JSON.parse(info.params).season}}
+
+
 					<h5 class="mt-4">Description</h5>
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus venenatis velit vestibulum massa sollicitudin auctor. Cras ac venenatis orci. Ut consequat, purus ut ultrices ultricies, nisi sem ornare quam, sed ultricies mi nisl sit amet purus.</p>
 					<p>Suspendisse potenti. Nunc in libero luctus, sagittis leo sit amet, volutpat lacus. Quisque a porta risus. Integer aliquet nibh vitae vestibulum accumsan</p>
@@ -238,29 +117,42 @@
 	</footer>	
     
   </div>
-  
 </template>
 
-
- 
 <script>
 
+//导入组件
+import myheader from './myheader.vue'
 
 export default {
-  data () {
-    return {
-      msg: "这是一个变量",
-    }
-  },
-  mounted:function(){
+    data () {
+        return {
+			msg: "这是一个变量",
+			id:1,
+			// 商品详情(根据返回值(console.log)确定定义的数据类型)
+			info:{},
+        }
+    },
+    //注册组件标签
+    components:{
+        'myheader':myheader
+    },
+    mounted:function(){
+		// 接收上个页 面传递的商品id
+		this.id=this.$route.query.id;
+		console.log(this.id)
+		// 获取商品详情
+		this.axios.get('http://localhost:8000/goodinfo/',{params:{id:this.id}}).then(res=>{
+			console.log(res)
+			this.info=res.data
 
-   
-  
-},
-  methods:{
+		})
+		
+	},
+	
+    methods:{ 
 
-     
-  }
+    },
 }
 
 

@@ -56,58 +56,27 @@
 		
 		<section class="products text-center">
 			<div class="container">
-				<h3 class="mb-4">Featured Products</h3>
+				<h3 class="mb-4">商品列表</h3>
 				<div class="row">
-					<div class="col-sm-6 col-md-3 col-product">
+					<div v-for="i in goodslist" :key="i" class="col-sm-6 col-md-3 col-product">
 						<figure>
-							<img class="rounded-corners img-fluid" src="../assets/images/placeholder-product.jpg"	width="240" height="240">
+							<img class="rounded-corners img-fluid" :src="'http://localhost:8000/static/upload/'+i.img" width="240" height="240">
 							<figcaption>
 								<div class="thumb-overlay"><a href="item.html" title="More Info">
 									<i class="fas fa-search-plus"></i>
-								</a></div>
+								</a></div> 
 							</figcaption>
 						</figure>
-						<h4><a href="item.html">Product Name</a></h4>
-						<p><span class="emphasis">$19.00</span></p>
-					</div>
-					<div class="col-sm-6 col-md-3 col-product">
-						<figure>
-							<img class="rounded-corners img-fluid" src="../assets/images/placeholder-product.jpg"	width="240" height="240">
-							<figcaption>
-								<div class="thumb-overlay"><a href="item.html" title="More Info">
-									<i class="fas fa-search-plus"></i>
-								</a></div>
-							</figcaption>
-						</figure>
-						<h4><a href="item.html">Product Name</a></h4>
-						<p><span class="emphasis">$19.00</span></p>
-					</div>
-					<div class="col-sm-6 col-md-3 col-product">
-						<figure>
-							<img class="rounded-corners img-fluid" src="../assets/images/placeholder-product.jpg"	width="240" height="240">
-							<figcaption>
-								<div class="thumb-overlay"><a href="item.html" title="More Info">
-									<i class="fas fa-search-plus"></i>
-								</a></div>
-							</figcaption>
-						</figure>
-						<h4><a href="item.html">Product Name</a></h4>
-						<p><span class="emphasis">$19.00</span></p>
-					</div>
-					<div class="col-sm-6 col-md-3 col-product">
-						<figure>
-							<img class="rounded-corners img-fluid" src="../assets/images/placeholder-product.jpg"	width="240" height="240">
-							<figcaption>
-								<div class="thumb-overlay"><a href="item.html" title="More Info">
-									<i class="fas fa-search-plus"></i>
-								</a></div>
-							</figcaption>
-						</figure>
-						<h4><a href="item.html">Product Name</a></h4>
-						<p><span class="emphasis">$19.00</span></p>
+						<h4><a :href="'http://localhost:8080/item?id='+i.id">{{i.name}}</a></h4>
+						<p><span class="emphasis">${{i.price}}</span></p>
 					</div>
 				</div>
+				<!--简单版分页容器-->
+				<div>
+					<Pagination layout="pager,jumper" small @change="get_goods" v-model="pagination" ></Pagination>
+				</div>
 			</div>
+			
 		</section>
 		
 		<div class="divider"></div>
@@ -144,19 +113,23 @@ export default {
     data () {
 		return {
 			msg: "这是一个变量",
+			// 分页器变量
+			pagination:{
+				// 当前页
+				page:1,
+				size:1,
+				total:4 
+			},
 			//轮播图图片
 			imgs:[
 			{
 				title:'广告活动页',
 				link:'http://www.baidu.com',
 				image:'http://localhost:8080/static/img/placeholder-jacket.f5996c6.png'
-			},
-			// {
-			// 	title:'促销活动页',
-			// 	link:'http://www.163.com',
-			// 	image:'http://localhost:8080/static/img/placeholder-product.1011f1b.jpg'
-			// }
-			]
+			}
+			],
+			// 商品列表
+			goodslist:[],
 		}
 },
 	//注册组件标签
@@ -167,6 +140,8 @@ export default {
     mounted:function(){
 		this.change_back();
 		this.get_carousel();
+		this.get_goods();
+
     },
 
 	methods:{
@@ -191,6 +166,17 @@ export default {
 						mylist.push({title:result.data[i].name,link:result.data[i].src,image:result.data[i].img});
 				}
 				this.img = mylist;
+			});
+		},
+
+		//获取商品列表接口
+		get_goods:function(){
+			//发送请求
+			this.axios.get('http://localhost:8000/goodslist/',{params:{page:this.pagination.page,size:this.pagination.size}}).then((result) =>{
+				console.log(result);
+				this.goodslist=result.data.data;
+		        this.pagination.total = result.data.total;
+
 			});
 		},
 
